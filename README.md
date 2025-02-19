@@ -1,2 +1,2 @@
 # LeetCodeJS
-My LeetCode solutions
+My daily LeetCode solutions in JS!
