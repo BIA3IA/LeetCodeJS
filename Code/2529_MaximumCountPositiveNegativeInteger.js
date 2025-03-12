@@ -27,6 +27,7 @@ Explanation: There are 4 positive integers and 0 negative integers. The maximum 
  * @return {number}
  */
 var maximumCount = function(nums) {
+    //O(n) complexity
     let neg = 0, zer = 0;
     for (let num of nums) {
         if (num < 0) 
@@ -39,3 +40,31 @@ var maximumCount = function(nums) {
     
     return Math.max(neg, nums.length - neg - zer);
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maximumCount = function(nums) {
+    //O(log(n)) complexity
+    const n = nums.length;
+    
+    function binarySearchFirstGreaterEqual(target) {
+        let left = 0, right = n;
+        while (left < right) {
+            let mid = Math.floor((left + right) / 2);
+            if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return left;
+    }
+    
+    const negativeCount = binarySearchFirstGreaterEqual(0);
+    const positiveCount = n - binarySearchFirstGreaterEqual(1);
+    
+    return Math.max(negativeCount, positiveCount);
+};
+
